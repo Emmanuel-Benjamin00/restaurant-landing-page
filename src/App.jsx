@@ -11,7 +11,7 @@ import LoginPage from "./components/LoginComponents/LoginPage"
 import FindFood from "./components/FindFoodComponents/FindFood"
 import Checkout from "./components/CheckoutFolder/Checkout"
 import Signup from "./components/LoginComponents/Signup"
-import Payment from "./components/PaymentFolder/payment"
+import Payment from "./components/PaymentFolder/Payment"
 
 function App() {
 
