@@ -1,0 +1,184 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Source Sans 3', sans-serif !important;
+}
+
+/* ------------------------------------------------------------------- */
+
+/* Topbar */
+.qwigley {
+  font-family: 'Qwigley', cursive;
+}
+
+.search-input{
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 0px;
+}
+
+.search-input:focus {
+  box-shadow: none; 
+  border-bottom: 1.5px solid #F17228;
+}
+
+.search-button:hover{
+  color: white ;
+  font-weight: bold;
+}
+
+.topbar-middle-font *{
+  font-size: 0.7rem;
+}
+
+.custom-dropdown-toggle::after {
+  display: none !important;
+}
+/* ----------------------------------------- */
+/* Hero */
+.hero-card{
+  border-radius: 10px;
+  min-height: 11em;
+  max-height:fit-content ;
+}
+
+.delpikbtn{
+  border: 1px solid black !important;
+}
+
+.hero h1 {
+  color: var(--theme-white, #FFF) !important;
+  text-shadow: 0px 27px 82px rgba(255, 174, 0, 0.28), 0px 14px 15px rgba(255, 174, 0, 0.01);
+  font-family: Qwigley;
+  font-size: 88px;
+  line-height: 100%;
+  font-weight: normal !important;
+}
+
+.activated{
+  background-color:#f17228;
+  color: white;
+  font-weight: 600;
+  border: none !important;
+}
+
+.activated:hover{
+  background-color:#f17228;
+  color: white;
+  font-weight: 600;
+  border: none !important;
+}
+
+.hero-select-input:focus{
+  box-shadow: none; 
+}
+/* -------------------------------------------------------------------- */
+/* 30 Min */
+._30-min p {
+  color: var(--theme-warning, #F17228);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  border-radius: 8px;
+  background: rgba(241, 114, 40, 0.20);
+  padding: 6px 14px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+._30-min h5 {
+  color: var(--theme-gray-800, #424242);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+/* ------------------------------------------------------- */
+/* How does work */
+.how-does-work h2 {
+  font-weight: 700 !important;
+  font-size: 43px;
+  color: #F17228;
+}
+
+
+.how-work h5 {
+  background: linear-gradient(150deg, #FB3C00 0%, #FFB800 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.7em;
+  font-weight: 700 !important;
+  line-height: 120%;
+}
+
+.how-doesit-work img{
+  height: 80% !important;
+}
+
+
+/* ---------------------------------------- */
+/* Search By Food */
+
+.search-by-food-content > h3 {
+  font-weight: 700 !important;
+  font-size: 43px;
+}
+
+.search-by-food-content h2 {
+  font-size: 22px;
+  font-weight: 700 !important;
+}
+
+/* ---------------------------------------- */
+/* Best Deals */
+.sub-but-foot {
+  box-shadow: 0px 14px 32px 0px rgba(255, 178, 14, 0.29), 0px 5px 8px 0px rgba(222, 151, 0, 0.24);
+}
+
+.Proceed * {
+  font-weight: 700;
+}
+
+.Proceed .lead {
+  font-weight: 600 !important;
+  font-family: 'Open Sans', sans-serif !important;
+  color: #616161B0 !important;
+}
+
+/* ---------------------------------------- */
+/* Popular Items */
+.popular-items button {
+  background-color: #F17228 !important;
+}
+
+.popular-items * {
+  font-weight: 700 !important;
+  font-size: 18px;
+}
+
+
+
+
+
+/* ---------------------------------------- */
+/* Footer */
+footer * {
+  color: #F5F5F5 !important;
+}
+
+.footer-inp:focus{
+  box-shadow: none; 
+  border-bottom: 1.5px solid #F17228;
+}
+
+.footer-inp{
+color: black !important;
+}
+
+
+/* ---------------------------------------- */
+

@@ -1,0 +1,33 @@
+
+.login-form-cont{
+    height: 100vh;
+    padding: 12vh 0;
+  }
+  
+  .login-section{
+    background-image: url("https://images.pexels.com/photos/545313/pexels-photo-545313.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-size: cover;
+  
+  }
+  
+  .login-form{
+    width: 45%;
+    background-color: rgba(255, 255, 255, 0.35); 
+    padding: 3%;
+    border-radius: 50px;
+    border: 3px solid rgb(255, 255, 255);
+  }
+  
+  .login-act-form{
+    width: 75%;
+  }
+  
+  .button-login{
+    width: 100% !important;
+  }
+  
+  .pointer{
+    cursor: pointer;
+  }
+  
+  
