@@ -10,6 +10,7 @@ import {toggle} from "../../redux/tokenSlice"
 import { change } from '../../redux/orderDataSlice';
 import { useLocation } from 'react-router-dom'
 
+
 function LoginPage() {
     let [email, setEmail] = useState("")
     let [password, setPassword] = useState("")
@@ -35,12 +36,12 @@ function LoginPage() {
                 sessionStorage.setItem('token', res.data.token)
                 sessionStorage.setItem('userData', JSON.stringify(res.data.userData))
                     if(!receivedData){
-                        navigate('/')
+                        navigate('/', { replace: true })
                         dispatch(toggle())
                     }
                     else{
                         dispatch(change(receivedData))
-                        navigate("/checkout")
+                        navigate("/checkout", { replace: true })
                         dispatch(toggle())
                     }             
             }

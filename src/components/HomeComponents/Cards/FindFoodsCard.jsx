@@ -9,6 +9,7 @@ function FindFoodsCard(props) {
     let navigate = useNavigate()
     let dispatch = useDispatch()
     let token = useSelector((state) => state.token)
+    
 
     let handleClick = (value) =>{
         console.log(props.data)
@@ -25,10 +26,10 @@ function FindFoodsCard(props) {
     return <>
         <div className="col">
             <div className="card h-100">
-                <img src={props.data.img} className="card-img-top" alt="..." />
+                <img src={`data:image/jpeg;base64,${props.data.img}`} className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title">{props.data.food}</h5>
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p className="card-text">{props.data.des}</p>
                     <p>Rs. {props.data.price}</p>
                     <button onClick={()=>handleClick(props.data)}>Order Now</button>
                 </div>

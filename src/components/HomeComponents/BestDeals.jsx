@@ -1,6 +1,6 @@
 import React from 'react'
 import BestDealHeroImg from "../../assets/images/banana-leaf-idly.png"
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function BestDeals() {
   let navigate = useNavigate()
@@ -18,7 +18,7 @@ function BestDeals() {
             perfect slice of Dosa.</p>
           <div className="">
             <button type="button" className="btn btn-primary btn-lg px-4 me-md-2 bg-warning sub-but-foot col-md-12 mt-3"
-              style={{ width: "240px" }} onClick={()=>navigate("/findfood")}>Proceed to order<i className="fa-solid fa-chevron-right ps-2"></i></button>
+              style={{ width: "240px" }} onClick={() => navigate("/findfood")}>Proceed to order<i className="fa-solid fa-chevron-right ps-2"></i></button>
 
           </div>
         </div>

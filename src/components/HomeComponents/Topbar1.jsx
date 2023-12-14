@@ -8,6 +8,9 @@ import { toggle } from "../../redux/tokenSlice"
 
 
 function Topbar1(props) {
+    let userDataString = sessionStorage.getItem('userData');
+    let userDataObject = JSON.parse(userDataString);
+
     let token = useSelector((state) => state.token)
     let navigate = useNavigate()
 
@@ -48,11 +51,13 @@ function Topbar1(props) {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        {/* <Dropdown.Item href="#">New project...</Dropdown.Item>
-                  <Dropdown.Item href="#">Settings</Dropdown.Item>
-                  <Dropdown.Item href="#">Profile</Dropdown.Item>
-                  <Dropdown.Divider /> */}
-                        <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
+                        {
+                            userDataObject.role==="admin" ?
+                            <> <Dropdown.Item onClick={()=>navigate("/edit")}>Edit Website</Dropdown.Item> 
+                            <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item></>  
+                            :
+                            <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
+                        }
                     </Dropdown.Menu>
                 </Dropdown>
                 <h6 style={{ margin: '0' }}>{user.name.split(" ")[0]}</h6>

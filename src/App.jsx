@@ -12,6 +12,7 @@ import FindFood from "./components/FindFoodComponents/FindFood"
 import Checkout from "./components/CheckoutFolder/Checkout"
 import Signup from "./components/LoginComponents/Signup"
 import Payment from "./components/PaymentFolder/Payment"
+import Edit from "./components/Admin Components/Edit"
 
 function App() {
 
@@ -57,6 +58,12 @@ function App() {
           <>
             <Topbar1 data={true}/>
             <Payment />
+          </>
+        } />
+         <Route path="/edit" element={
+          <>
+            <Topbar1 data={true}/>
+            <Edit/>
           </>
         } />
         <Route path="*" element={<Navigate to="/" />} />

@@ -13,65 +13,24 @@ import VegSoupImg from "../../assets/images/Popular Items/veg soup.png"
 import AxiosService from '../../utils/ApiService'
 
 function Popularitems() {
-  const data = [
-    {
-      img: MurukkuImg,
-      food: "Murukku"
-    },
-    {
-      img: PaniyaramImg,
-      food: "Paniyaram"
-    },
-    {
-      img: SeevalMurukkuImg,
-      food: "Seeval Murukku"
-    },
-    {
-      img: MixtureImg,
-      food: "Mixture"
-    },
-    {
-      img: VegSoupImg,
-      food: "Veg Soup"
-    },
-    {
-      img: GulabImg,
-      food: "Gulab Jamun"
-    },
-    {
-      img: PorivelamgaImg,
-      food: "Porivellangai Urundai"
-    },
-    {
-      img: JangriImg,
-      food: "Jangri"
-    },
-    {
-      img: LadduImg,
-      food: "Laddu"
-    },
-    {
-      img: HalwaImg,
-      food: "Halwa"
+
+  let [data, setData] = useState([])
+
+  let filteredData = data.filter((e)=>e.webPageSHowFoods === "Popular Items"  )
+  let getFoods = async () =>{
+    try {
+      let res = await AxiosService.get("/food/getAllFoods")
+      if(res.status === 200){
+        setData(res.data.foods)
+      }
+    } catch (error) {
+      console.log(error)
     }
-  ]
+  }
 
-  // let [data, setData] = useState([])
-
-  // let getFoods = async () =>{
-  //   try {
-  //     let res = await AxiosService.get("/food/getAllFoods")
-  //     if(res.status === 200){
-  //       setData(res.data.foods)
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-  // useEffect(()=>{
-  //   getFoods()
-  // },[])
+  useEffect(()=>{
+    getFoods()
+  },[])
 
   return <>
     <div className="popular-items container-fluid col-xxl-10" >
@@ -81,7 +40,7 @@ function Popularitems() {
         </div>
         <div className="d-flex flex-wrap justify-content-center align-items-center gap-4 mt-4">
           {
-            data.map((e, i) => {
+            filteredData.map((e, i) => {
               return <PopularItemsCard data={e} key={i} />
             })
           }

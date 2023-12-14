@@ -29,10 +29,11 @@ function PopularItemsCard(props) {
 
     return <>
         <div className="card border-0 card h-100 pt-1">
-            <img src={props.data.img} className="bd-placeholder-img card-img-top p-2" width="100%"
-                height="180" alt="" />
+            <img src={`data:image/jpeg;base64,${props.data.img}`} className="bd-placeholder-img card-img-top p-2" width="100%"
+                height="180" alt="" loading="lazy" />
             <div className="d-flex justify-content-center align-items-center flex-column">
                 <h5 className="card-title popular-font">{props.data.food}</h5>
+                <p className='fs-6 fw-normal'>Price: {props.data.price}</p>
                 <div className="">
                     <button type="button" className="btn btn-primary m-0 order-button btn-warning text-light"
                         style={{ width: "170px" }} onClick={() => handleClick(props.data)}>Order Now</button>
