@@ -74,8 +74,8 @@ function Topbar1(props) {
                     <span className="text-secondary open-sans  lh-140per">Main Branch</span>&nbsp;
                     <span className="text-secondary fw-bold open-sans lh-100per">Ashok Nagar, Chennai-600013</span>
                 </div>
-                <div className="col-md-3 text-end pe-md-4 d-flex  ">
-                    <input type="search" className="form-control me-2 d-inline search-input" placeholder="Search Food" aria-label="Search" style={{ width: "60%" }} />
+                <div className="col-md-2 text-end pe-md-4 d-flex  ">
+                    {/* <input type="search" className="form-control me-2 d-inline search-input" placeholder="Search Food" aria-label="Search" style={{ width: "60%" }} /> */}
                     {
                         token ?
                             <LoginIcon />

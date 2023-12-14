@@ -1,9 +1,28 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import {change} from "../../../redux/orderDataSlice"
+import { useSelector } from 'react-redux'
+
 
 function Deliver30Card(props) {
+    let navigate = useNavigate()
+    let token = useSelector((state)=>state.token)
+    let dispatch = useDispatch()
+
+    let handleClick = (value) =>{
+        if(token){
+            console.log(value)
+            dispatch(change(value))
+            navigate("/checkout")
+        }else{
+            navigate("/login", { state: { OrderedFoodData: value } })
+        }
+    }
+
     return <>
         <div className="col">
-            <div className="card border-0 card h-100">
+            <div className="card border-0 card h-100" style={{cursor:"pointer"}} onClick={()=>handleClick(props.data)}>
                 <img src={`data:image/jpeg;base64,${props.data.img}`} className="bd-placeholder-img card-img-top" width="100%"
                     height="210" alt="" />
                 <div className="card-body">

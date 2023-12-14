@@ -54,8 +54,8 @@ function Footer() {
                 </li>
               </ul>
 
-              <p>Receive exclusive offers in your mailbox</p>
-              <div className="d-flex flex-column flex-sm-row w-100 gap-2">
+               {/* <p>Receive exclusive offers in your mailbox</p>
+             <div className="d-flex flex-column flex-sm-row w-100 gap-2">
 
                 <div className="input-container d-flex p-1 " style={{ borderRadius: "8px", backgroundColor: "#f5f5f5" }}>
                   <img src={mailImg} alt="" />
@@ -64,7 +64,7 @@ function Footer() {
                     style={{ color: "#F5F5F5" }} />
                 </div>
                 <button className="btn bg-warning sub-but-foot" type="button">Subscribe</button>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

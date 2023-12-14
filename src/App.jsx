@@ -44,7 +44,7 @@ function App() {
         } />
         <Route path="/findfood" element={
           <>
-            <Topbar1 data={true}/>
+            <Topbar1 data={true} />
             <FindFood />
           </>
         } />
@@ -56,14 +56,14 @@ function App() {
         } />
         <Route path="/payment" element={
           <>
-            <Topbar1 data={true}/>
+            <Topbar1 data={true} />
             <Payment />
           </>
         } />
-         <Route path="/edit" element={
+        <Route path="/edit" element={
           <>
-            <Topbar1 data={true}/>
-            <Edit/>
+            <Topbar1 data={true} />
+            <Edit />
           </>
         } />
         <Route path="*" element={<Navigate to="/" />} />
