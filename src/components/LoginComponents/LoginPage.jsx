@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Form, FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
-// import { toast } from 'react-toastify'
 import AxiosService from '../../utils/ApiService';
 import { useNavigate } from 'react-router-dom';
 import "../../../styles/login.css"
@@ -9,6 +8,7 @@ import {useDispatch } from 'react-redux';
 import {toggle} from "../../redux/tokenSlice"
 import { change } from '../../redux/orderDataSlice';
 import { useLocation } from 'react-router-dom'
+import googleButton from "../../assets/images/Login/Google-signin-button.png"
 
 
 function LoginPage() {
@@ -52,6 +52,17 @@ function LoginPage() {
             setIsSubmitting(false);
         }
     }
+
+    // const OAuthNavigate = (url) =>{
+    //     window.location.href = url
+    // }
+
+    // const auth = async()=>{
+    //     const response = await fetch("http://localhost:8000/request",
+    //     {method:"post"});
+    //     const data = await response.json();
+    //     OAuthNavigate(data.url);
+    // }
     return <>
         <div className='login-section'>
 
@@ -80,6 +91,12 @@ function LoginPage() {
                     </div>
                 </div>
             </Container>
+            {/* <>
+                <h3>Google OAuth</h3>
+                <button type="button" onClick={()=>auth()}>
+                    <img src={googleButton} alt=""/>
+                </button>
+            </> */}
         </div>
     </>
 }
