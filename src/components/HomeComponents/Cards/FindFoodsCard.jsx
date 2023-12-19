@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
 import AxiosService from '../../../utils/ApiService';
 import {getData} from "../../../redux/getDataSlice"
+import { Button } from 'react-bootstrap';
 
 
 function FindFoodsCard(props) {
@@ -42,18 +43,18 @@ function FindFoodsCard(props) {
     return <>
         <div className="col">
             <div className="card h-100">
-                <img src={`data:image/jpeg;base64,${props.data.img}`} className="card-img-top" alt="..." />
+                <img src={`data:image/jpeg;base64,${props.data.img}`} className="card-img-top" alt="img" style={{height:"50%"}}/>
                 <div className="card-body">
                     <h5 className="card-title">{props.data.food}</h5>
                     <p className="card-text">{props.data.des}</p>
                     <p>Rs. {props.data.price}</p>
-                    <button onClick={() => handleClick(props.data)}>
+                    <Button onClick={() => handleClick(props.data)} variant='warning'>
                     {
                         props.editButton ? "Edit" : "Order Now"
                     }
-                    </button>                    
+                    </Button>                    
                     {
-                        props.editButton ? <button className="ms-3" onClick={() => handleDelete(props.data._id)}>Delete</button> : ""
+                        props.editButton ? <Button className="ms-3" onClick={() => handleDelete(props.data._id)} variant='warning'>Delete</Button> : ""
                     }                                  
                 </div>
             </div>

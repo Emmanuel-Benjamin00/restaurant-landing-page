@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import AxiosService from '../../utils/ApiService';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import useLogout from '../../hooks/useLogout';
 
 
 function CheckoutAddressCard() {
 
+    let logout = useLogout()
     let navigate = useNavigate()
     let userDataString = sessionStorage.getItem('userData');
     let userDataObject = JSON.parse(userDataString);
@@ -27,7 +29,10 @@ function CheckoutAddressCard() {
                 setSelectedAddress(selectedGuy.address)
             }
         } catch (error) {
-            console.log(error)
+        if(error.response.status === 401){
+            logout()
+            navigate("/")
+          }
         }
     }
 
@@ -139,7 +144,7 @@ function CheckoutAddressCard() {
                             <div className="card mt-4">
                                 <div className="card-body">
                                     <h4 className="card-title fw-bold pb-3" style={{ textAlign: 'left', color: "green" }} >Payment</h4>
-                                    <Button style={{ width: "100%" }} onClick={() => { navigate("/payment", { state: { data: addressSelectDone } }) }}>Proceed to Pay</Button>
+                                    <Button variant='warning' style={{ width: "100%" }} onClick={() => { navigate("/payment", { state: { data: addressSelectDone } }) }}>Proceed to Pay</Button>
                                 </div>
                             </div>
                         </>

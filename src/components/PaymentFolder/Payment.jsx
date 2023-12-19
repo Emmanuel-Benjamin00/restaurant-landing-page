@@ -2,28 +2,44 @@ import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import AxiosService from '../../utils/ApiService';
+import { useNavigate } from 'react-router-dom';
+import useLogout from '../../hooks/useLogout';
+
 
 function payment() {
     let orderData = useSelector((state) => state.orderData)
     const location = useLocation();
     const receivedData = location.state?.data || 'Default Data';
-
+    let navigate = useNavigate()
+    let logout = useLogout()
 
     const addOrderedData = async() =>{
         try {
             let res = await AxiosService.post("/order/orderedFoods",{
                 foodId:orderData[0]._id,
                 foodOrdered: orderData[0].food,
-                foodImg: orderData[0].img,
                 price:orderData[0].price,
                 address:receivedData,
             })
             if(res.status===201){
                 console.log("Order placed successfully")
+                setTimeout(()=>{
+                    window.location.replace("/");
+                    window.history.go(-(window.history.length-2));
+                },2000)  
             }
         } catch (error) {
-            
+            if(error.response.status === 401){
+                logout()
+                navigate("/")                       
+            }
+            console.log(error.response)
         }
+    }
+
+    const handlePlaceOrder = () =>{
+        addOrderedData()
+        navigate("/order-placed", { state: { data: receivedData} })
     }
 
     return <>
@@ -157,6 +173,10 @@ function payment() {
                                 <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="" />
                                 <label class="form-check-label" for="paypal">PayPal</label>
                             </div>
+                            <div class="form-check">
+                                <input id="paytm" name="paymentMethod" type="radio" class="form-check-input" required="" />
+                                <label class="form-check-label" for="paytm">PayPal</label>
+                            </div>
                         </div>
 
                         <div class="row gy-3">
@@ -196,7 +216,7 @@ function payment() {
 
                         <hr class="my-4" />
 
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                        <button class="w-100 btn btn-primary btn-lg" type="button" onClick={()=>handlePlaceOrder()}>Place Order</button>
                     </form>
                 </div>
             </div>

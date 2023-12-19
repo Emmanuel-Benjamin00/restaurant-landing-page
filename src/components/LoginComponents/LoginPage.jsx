@@ -4,8 +4,8 @@ import { Container } from 'react-bootstrap';
 import AxiosService from '../../utils/ApiService';
 import { useNavigate } from 'react-router-dom';
 import "../../../styles/login.css"
-import {useDispatch } from 'react-redux';
-import {toggle} from "../../redux/tokenSlice"
+import { useDispatch } from 'react-redux';
+import { toggle } from "../../redux/tokenSlice"
 import { change } from '../../redux/orderDataSlice';
 import { useLocation } from 'react-router-dom'
 import googleButton from "../../assets/images/Login/Google-signin-button.png"
@@ -29,21 +29,21 @@ function LoginPage() {
         try {
             setIsSubmitting(true);
             let res = await AxiosService.post('/user/login', {
-              email,
-              password
+                email,
+                password
             })
             if (res.status === 200) {
                 sessionStorage.setItem('token', res.data.token)
                 sessionStorage.setItem('userData', JSON.stringify(res.data.userData))
-                    if(!receivedData){
-                        navigate('/', { replace: true })
-                        dispatch(toggle())
-                    }
-                    else{
-                        dispatch(change(receivedData))
-                        navigate("/checkout", { replace: true })
-                        dispatch(toggle())
-                    }             
+                if (!receivedData) {
+                    navigate('/', { replace: true })
+                    dispatch(toggle())
+                }
+                else {
+                    dispatch(change(receivedData))
+                    navigate("/checkout", { replace: true })
+                    dispatch(toggle())
+                }
             }
         } catch (error) {
             setLoginError("Wrong Credentials")
@@ -81,12 +81,12 @@ function LoginPage() {
                                 <FormControl type="password" id="exampleInputPassword1" onChange={((e) => setPassword(e.target.value))} />
                                 <div id='error' className='text-danger'>{loginError}</div>
                             </FormGroup>
-                            
+
                             <Button variant="primary" className='button-login' type='submit' onClick={(e) => handleLogin(e)} disabled={isSubmitting}>
                                 {isSubmitting ? 'Submitting...' : 'Submit'}
                             </Button>
                         </Form>
-                        <div className='pointer' onClick={() => navigate("/forgetpassword")}>Forgot Password</div>
+                        <div className='pointer' onClick={() => navigate("/forgotpassword")}>Forgot Password</div>
                         <div className='mt-4 text-primary fs-5 pointer' onClick={() => navigate("/signup")}>New User? SignUp</div>
                     </div>
                 </div>

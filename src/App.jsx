@@ -15,6 +15,10 @@ import Payment from "./components/PaymentFolder/Payment"
 import FoodCreate from "./components/Admin Components/FoodCreate"
 import FoodEdit from "./components/Admin Components/FoodEdit"
 import AllFood from "./components/Admin Components/Allfood"
+import ForgetPassword from "./components/Password Reset Components/ForgetPassword"
+import ResetPassword from "./components/Password Reset Components/ResetPassword"
+import OrderPlaced from "./components/Order Placed Components/OrderPlaced"
+import OrderStatus from "./components/Order Placed Components/OrderStatus"
 
 function App() {
 
@@ -74,13 +78,35 @@ function App() {
             <FoodEdit />
           </>
         } />
-           <Route path="/admin/allfood" element={
+        <Route path="/admin/allfood" element={
           <>
             <Topbar1 data={true} />
             <AllFood />
           </>
         } />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/forgotpassword" element={
+          <>
+            <ForgetPassword />
+          </>
+        } />
+        <Route path='/reset-link' element={
+          <>
+            <ResetPassword />
+          </>
+        } />
+        <Route path='/order-placed' element={
+          <>
+            <Topbar1 data={true} />
+            <OrderPlaced />
+          </>
+        } />
+        <Route path='/admin/order-status' element={
+          <>
+            <Topbar1 data={true} />
+            <OrderStatus />
+          </>
+        } />
+        <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   )

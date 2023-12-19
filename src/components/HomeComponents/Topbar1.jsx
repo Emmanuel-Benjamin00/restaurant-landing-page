@@ -42,7 +42,7 @@ function Topbar1(props) {
         const storedUserData = sessionStorage.getItem('userData');
         const initialUser = storedUserData ? JSON.parse(storedUserData) : null;
         const [user, setUser] = useState(initialUser);
-        console.log(user.name)
+        
         return (
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Dropdown align="end">
@@ -53,7 +53,8 @@ function Topbar1(props) {
                     <Dropdown.Menu>
                         {
                             userDataObject.role==="admin" ?
-                            <> <Dropdown.Item onClick={()=>navigate("/edit")}>Edit Website</Dropdown.Item> 
+                            <> <Dropdown.Item onClick={()=>navigate("/admin/order-status")}>Order Status</Dropdown.Item> 
+                            <Dropdown.Item onClick={()=>navigate("/admin/allfood")}>Edit Website</Dropdown.Item> 
                             <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item></>  
                             :
                             <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>

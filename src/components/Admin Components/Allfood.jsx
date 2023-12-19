@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import FindFoodsCard from '../HomeComponents/Cards/FindFoodsCard'
 import AxiosService from '../../utils/ApiService'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Button } from 'react-bootstrap'
+import useLogout from '../../hooks/useLogout'
 
 function AllFood() {
 
+    let logout = useLogout()
+    let navigate = useNavigate()
     let [foodData, setfoodData] = useState([])
     let [loading, setLoading] = useState(true)
     const location = useLocation();
@@ -36,7 +40,7 @@ function AllFood() {
     let getFoods = async () => {
         try {
             setLoading(true);
-            let res = await AxiosService.get("/food/getAllFoods");
+            let res = await AxiosService.get("/food/getAllFoodsAdmin");
             if (res.status === 200) {
                 setfoodData(res.data.foods);
                 setTimeout(() => {
@@ -48,7 +52,10 @@ function AllFood() {
                 }, 100);
             }
         } catch (error) {
-            console.log(error);
+        if(error.response.status === 401){
+            logout()
+            navigate("/")
+          }
         } finally {
             setLoading(false);
         }
@@ -73,6 +80,7 @@ function AllFood() {
                             <a class="nav-link fs-5 pe-4" href="#sweetId" id="Sweet">Sweet</a>
                             <a class="nav-link fs-5 pe-4" href="#kaaramId" id="Kaaram">Kaaram</a>
                             <a class="nav-link fs-5 pe-4" href="#drinksId" id="Drinks-and-Cools">Drinks and Cools</a>
+                            <Button onClick={()=>navigate("/admin/createfood")}>Add Food</Button>
                         </div>
                     </div>
                 </div>

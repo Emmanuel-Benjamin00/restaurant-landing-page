@@ -3,10 +3,12 @@ import AxiosService, { AxiosServiceWithFileUpload } from '../../utils/ApiService
 import { Form, Button, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import useLogout from '../../hooks/useLogout';
 
 
 
 function FoodEdit() {
+    let logout = useLogout()
     let navigate = useNavigate()
     let params = useParams()
     let [food, setFood] = useState("")
@@ -34,6 +36,8 @@ function FoodEdit() {
         } catch (error) {
             if (error.response.status === 401) {
                 logout()
+                navigate("/")
+                console.log(error.response.status)
             }
         }
     }
@@ -44,6 +48,7 @@ function FoodEdit() {
         }
         else {
             logout()
+            navigate("/")
         }
     }, [])
 
@@ -77,6 +82,9 @@ function FoodEdit() {
             else if (error.response.status === 422) {
                 console.log(`Fill all the fiels`)
                 setValidated(true);
+            } else if (error.response.status === 401) {
+                logout()
+                navigate("/")
             }
             else {
                 setValidated(false);
@@ -109,7 +117,7 @@ function FoodEdit() {
                                 <Form.Control type="file" onChange={handleFileChange} />
                                 <Form.Text className="text-muted">
                                     {
-                                       imageText ?  `Image Selected : ${food.img?.substring(0, 30)}...` : ""
+                                        imageText ? `Image Selected : ${food.img?.substring(0, 30)}...` : ""
                                     }
                                 </Form.Text>
                             </Form.Group>

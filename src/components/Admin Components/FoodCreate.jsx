@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import AxiosService, { AxiosServiceWithFileUpload } from '../../utils/ApiService'
 import { Form, Button, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import useLogout from '../../hooks/useLogout';
 
 
 function FoodCreate() {
  
+  let navigate = useNavigate()
   let [dish, setDish] = useState("")
   let [des, setDes] = useState("")
   let [price, setPrice] = useState("")
@@ -13,6 +16,7 @@ function FoodCreate() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [validated, setValidated] = useState(false);
   const fileInputRef = useRef(null);
+  let logout = useLogout()
 
 
   const handleFileChange = (event) => {
@@ -53,6 +57,9 @@ function FoodCreate() {
           else if (error.response.status === 422) {
               console.log(`Fill all the fiels`)
               setValidated(true);
+          }else if(error.response.status === 401){
+            logout()
+            navigate("/")
           }
           else {
               setValidated(false);
@@ -128,10 +135,14 @@ function FoodCreate() {
                 </Form.Select>
             </Form.Group>
 
-            <Button variant="primary" type="button" onClick={handleSubmit} >
+            <Button className='me-3' variant="warning" type="button" onClick={handleSubmit} >
                 Add Dish
             </Button>
+            <Button className='ms-3' variant="primary" type="button" onClick={()=>navigate("/admin/allfood")} >
+                Back to All Food
+            </Button>
         </Form>
+     
     </>
         </div>
       </div>
