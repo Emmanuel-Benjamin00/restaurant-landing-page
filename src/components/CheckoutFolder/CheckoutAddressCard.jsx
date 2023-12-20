@@ -105,7 +105,7 @@ function CheckoutAddressCard() {
                                         <p><strong>Deliver to:</strong><br /><span></span></p>
                                         <a onClick={() => setSendToAddress(false)}>Change</a>
                                     </div>
-                                    <p>{addressSelectDone}</p>
+                                    <p className='px-4'>{addressSelectDone}</p>
                                 </div>
                             </>
                             :
@@ -116,9 +116,9 @@ function CheckoutAddressCard() {
                                             return <EachAddress data={e} key={i} />
                                         })
                                     }
-                                    <div className="card ms-5 mb-3" style={{ width: "18rem" }}>
+                                    <div className="card mb-3" style={{ width: "18rem" }}>
                                         <div className="card-body">
-                                            <div className='d-flex justify-content-between'>
+                                            <div className='d-flex'>
                                                 <h6 className="card-title">Add New Address</h6>
                                                 {
                                                     inp ? <div style={{ color: "red", cursor: "pointer" }} onClick={() => setInp(false)}>X</div> : ""

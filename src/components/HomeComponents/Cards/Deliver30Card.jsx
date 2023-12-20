@@ -20,7 +20,7 @@ function Deliver30Card(props) {
             navigate("/login", { state: { OrderedFoodData: value } })
         }
     }
-    console.log(props.data)
+
     return <>
         <div className="col">
             <div className="card border-0 card h-100" style={{cursor:"pointer"}} onClick={()=>handleClick(props.data)}>
