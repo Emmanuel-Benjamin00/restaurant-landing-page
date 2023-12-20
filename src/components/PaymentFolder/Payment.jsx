@@ -34,9 +34,9 @@ function payment() {
                 if (res.status === 201) {
                     console.log("Order placed successfully")
                     setTimeout(() => {
-                        // window.location.replace("/");
-                        // window.history.go(-(window.history.length - 2));
-                        navigate("/")
+                        window.location.replace("/");
+                        window.history.go(-(window.history.length - 2));
+                        // navigate("/")
                     }, 3500)
                 }
             }
