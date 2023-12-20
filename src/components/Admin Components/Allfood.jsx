@@ -10,13 +10,12 @@ function AllFood() {
 
     let logout = useLogout()
     let navigate = useNavigate()
-    let [foodData, setfoodData] = useState([])
     let [loading, setLoading] = useState(true)
     const location = useLocation();
     let receivedData = location.state?.data || null
     let editButton = "true"
 
-    let getData = useSelector((state)=>state.getData)
+    let getData = useSelector((state) => state.getData)
     console.log(getData.data)
 
     function processString(inputString) {
@@ -30,19 +29,20 @@ function AllFood() {
     console.log(processString(receivedData))
 
 
-    let tiffenFilteredData = foodData.filter((e) => e.category === "Tiffen")
-    let riceFilteredData = foodData.filter((e) => e.category === "Rice")
-    let eveFilteredData = foodData.filter((e) => e.category === "Evenings Crackers")
-    let sweetFilteredData = foodData.filter((e) => e.category === "Sweet")
-    let kaaramFilteredData = foodData.filter((e) => e.category === "Kaaram")
-    let coolsFilteredData = foodData.filter((e) => e.category === "Cool Drinks")
+    let [tiffenData, setTiffenData] = useState([])
+    let [riceData, setRiceData] = useState([])
+    let [eveData, setEveData] = useState([])
+    let [sweetData, setSweetData] = useState([])
+    let [kaaramData, setKaaramData] = useState([])
+    let [coolsData, setCoolsData] = useState([])
 
-    let getFoods = async () => {
+
+    let getTiffen = async () => {
         try {
             setLoading(true);
-            let res = await AxiosService.get("/food/getAllFoodsAdmin");
+            let res = await AxiosService.get("/food/getForTiffen");
             if (res.status === 200) {
-                setfoodData(res.data.foods);
+                setTiffenData(res.data.foods);
                 setTimeout(() => {
                     const myLink = document.getElementById(`${processString(receivedData)}`);
                     if (myLink) {
@@ -52,23 +52,149 @@ function AllFood() {
                 }, 100);
             }
         } catch (error) {
-        if(error.response.status === 401){
-            logout()
-            navigate("/")
-          }
+            if (error.response.status === 401) {
+                logout()
+                navigate("/")
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    let getRice = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForRice");
+            if (res.status === 200) {
+                setRiceData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            if (error.response.status === 401) {
+                logout()
+                navigate("/")
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    let getEveCrk = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForEveCrk");
+            if (res.status === 200) {
+                setEveData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            if (error.response.status === 401) {
+                logout()
+                navigate("/")
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    let getSweet = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForSwt");
+            if (res.status === 200) {
+                setSweetData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            if (error.response.status === 401) {
+                logout()
+                navigate("/")
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    let getKaaram  = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForKaaram");
+            if (res.status === 200) {
+                setKaaramData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            if (error.response.status === 401) {
+                logout()
+                navigate("/")
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    let getCool = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForCools");
+            if (res.status === 200) {
+                setCoolsData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            if (error.response.status === 401) {
+                logout()
+                navigate("/")
+            }
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        getFoods()
+        getTiffen()
+        getRice()
+        getSweet()
+        getCool()
+        getKaaram()
+        getEveCrk()
     }, [getData])
+
     return <>
         <div className='container-fluid mt-5 px-5'>
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
-                    <a className="navbar-brand fs-2" href="#">Find Foods</a>
+                    <a className="navbar-brand fs-2" href="#">Edit Website</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -80,7 +206,7 @@ function AllFood() {
                             <a className="nav-link fs-5 pe-4" href="#sweetId" id="Sweet">Sweet</a>
                             <a className="nav-link fs-5 pe-4" href="#kaaramId" id="Kaaram">Kaaram</a>
                             <a className="nav-link fs-5 pe-4" href="#drinksId" id="Drinks-and-Cools">Drinks and Cools</a>
-                            <Button variant="warning" onClick={()=>navigate("/admin/createfood")}>Add Food</Button>
+                            <Button variant="warning" onClick={() => navigate("/admin/createfood")}>Add Food</Button>
                         </div>
                     </div>
                 </div>
@@ -101,8 +227,8 @@ function AllFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-3' id="tiffenId">Tiffen</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    tiffenFilteredData.map((e, i) => {
-                                        return <FindFoodsCard data={e} key={i} editButton={editButton}/>
+                                    tiffenData.map((e, i) => {
+                                        return <FindFoodsCard data={e} key={i} editButton={editButton} />
                                     })
                                 }
 
@@ -111,8 +237,8 @@ function AllFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="riceId">Rice</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    riceFilteredData.map((e, i) => {
-                                        return <FindFoodsCard data={e} key={i} editButton={editButton}/>
+                                    riceData.map((e, i) => {
+                                        return <FindFoodsCard data={e} key={i} editButton={editButton} />
                                     })
                                 }
 
@@ -121,7 +247,7 @@ function AllFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="eveId">Evenings Crackers</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    eveFilteredData.map((e, i) => {
+                                    eveData.map((e, i) => {
                                         return <FindFoodsCard data={e} key={i} editButton={editButton} />
                                     })
                                 }
@@ -131,8 +257,8 @@ function AllFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="sweetId">Sweet</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    sweetFilteredData.map((e, i) => {
-                                        return <FindFoodsCard data={e} key={i} editButton={editButton}/>
+                                    sweetData.map((e, i) => {
+                                        return <FindFoodsCard data={e} key={i} editButton={editButton} />
                                     })
                                 }
 
@@ -141,8 +267,8 @@ function AllFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="kaaramId">Kaaram</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    kaaramFilteredData.map((e, i) => {
-                                        return <FindFoodsCard data={e} key={i} editButton={editButton}/>
+                                    kaaramData.map((e, i) => {
+                                        return <FindFoodsCard data={e} key={i} editButton={editButton} />
                                     })
                                 }
 
@@ -151,8 +277,8 @@ function AllFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="drinksId">Drinks and Cools</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    coolsFilteredData.map((e, i) => {
-                                        return <FindFoodsCard data={e} key={i} editButton={editButton}/>
+                                    coolsData.map((e, i) => {
+                                        return <FindFoodsCard data={e} key={i} editButton={editButton} />
                                     })
                                 }
                             </>

@@ -9,11 +9,9 @@ function Deliiver30min() {
   let [loading, setLoading] = useState(true)
   const [error, setError] = useState(null);
 
-  let filteredData = Deliver30Data.filter((e) => e.webPageSHowFoods === "30 Min Delivery")
-
   let getFoods = async () => {
     try {
-      let res = await AxiosService.get("/food/getAllFoods")
+      let res = await AxiosService.get("/food/getFor30Min")
       if (res.status === 200) {
         setDeliver30Data(res.data.foods)
         setLoading(false)
@@ -48,7 +46,7 @@ function Deliiver30min() {
           <div className="album py-3">
             <div className="">
               <div className="row row-cols-2 row-cols-sm-2 row-cols-md-5 justify-content-center">
-                {filteredData.map((e, i) => {
+                {Deliver30Data.map((e, i) => {
                   return <Deliver30Card data={e} key={i} />;
                 })}
               </div>

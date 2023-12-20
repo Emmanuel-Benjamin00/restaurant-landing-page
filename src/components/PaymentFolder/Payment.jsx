@@ -14,26 +14,38 @@ function payment() {
     let navigate = useNavigate()
     let logout = useLogout()
 
+    useEffect(() => {
+        if (!orderData || !orderData[0]) {
+            // Handle the case when orderData or orderData[0] is not defined
+            navigate(-1);
+        }
+    }, [orderData, navigate]);
+
+
     const addOrderedData = async () => {
         try {
-            let res = await AxiosService.post("/order/orderedFoods", {
-                foodId: orderData[0]._id,
-                foodOrdered: orderData[0].food,
-                price: orderData[0].price,
-                address: receivedData,
-            })
-            if (res.status === 201) {
-                console.log("Order placed successfully")
-                setTimeout(() => {
-                    window.location.replace("/");
-                    window.history.go(-(window.history.length - 2));
-                }, 2500)
+            if (orderData && orderData[0]) {
+                let res = await AxiosService.post("/order/orderedFoods", {
+                    foodId: orderData[0]._id,
+                    foodOrdered: orderData[0].food,
+                    price: orderData[0].price,
+                    address: receivedData,
+                })
+                if (res.status === 201) {
+                    console.log("Order placed successfully")
+                    setTimeout(() => {
+                        // window.location.replace("/");
+                        // window.history.go(-(window.history.length - 2));
+                        navigate("/")
+                    }, 3500)
+                }
             }
         } catch (error) {
             if (error.response.status === 401) {
                 logout()
                 navigate("/")
             }
+           
             console.log(error.response)
         }
     }
@@ -54,13 +66,15 @@ function payment() {
                             <span className="badge bg-primary rounded-pill">3</span>
                         </h4>
                         <ul className="list-group mb-3">
-                            <li className="list-group-item d-flex justify-content-between lh-sm">
-                                <div>
-                                    <h6 className="my-0">Deliver to: {receivedData} </h6>
-                                    <h6 className="my-0">Order: {orderData[0].food} </h6>
-                                    <h6 className="my-0">Price: {orderData[0].price} </h6>
-                                </div>
-                            </li>
+                            {orderData && orderData[0] && (
+                                <li className="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 className="my-0">Deliver to: {receivedData} </h6>
+                                        <h6 className="my-0">Order: {orderData[0].food} </h6>
+                                        <h6 className="my-0">Price: {orderData[0].price} </h6>
+                                    </div>
+                                </li>
+                            )}
                         </ul>
                     </div>
 

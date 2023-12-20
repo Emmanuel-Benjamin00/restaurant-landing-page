@@ -159,8 +159,11 @@ function FoodEdit() {
                                 </Form.Select>
                             </Form.Group>
 
-                            <Button variant="primary" type="button" onClick={handleSubmit} >
+                            <Button className='me-3' variant="warning" type="button" onClick={handleSubmit} >
                                 Update Dish
+                            </Button>
+                            <Button variant="primary" type="button" onClick={()=>navigate("/admin/allfood")} >
+                               Go Back
                             </Button>
                         </Form>
                     </>

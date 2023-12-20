@@ -51,7 +51,7 @@ function ForgetPassword() {
 
     return (
         <>
-            <div className='d-flex align-items-center justify-content-center flex-column' style={{ height: '100vh' }} >
+            <div className='d-flex align-items-center justify-content-center flex-column bg-image-outpages' style={{ height: '100vh' }} >
                 <h1 className='fs-2 mb-3 warning form-box'>Forgot Password</h1>
                 <form className='col-md-3 col-xxl-5 form-box mb-3'>
                     <div className="mb-3" id="formBasicEmail">
@@ -63,7 +63,7 @@ function ForgetPassword() {
                 </form>
                 <br />
                 {
-                    resetting ? " " : <div className='mt-2 text-primary fs-6 pointer' onClick={() => navigate("/")}>Back to Login Page</div>
+                    resetting ? " " : <div className='mt-2 text-primary fs-6 pointer' onClick={() => navigate("/")}>Back to Home Page</div>
                 }
             </div>
 

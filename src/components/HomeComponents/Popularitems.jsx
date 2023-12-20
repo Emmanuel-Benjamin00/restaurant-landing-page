@@ -10,10 +10,10 @@ function Popularitems() {
 
   const [error, setError] = useState(null);
 
-  let filteredData = data.filter((e)=>e.webPageSHowFoods === "Popular Items"  )
+  // let filteredData = data.filter((e)=>e.webPageSHowFoods === "Popular Items"  )
   let getFoods = async () =>{
     try {
-      let res = await AxiosService.get("/food/getAllFoods")
+      let res = await AxiosService.get("/food/getForPopular")
       if(res.status === 200){
         setData(res.data.foods)
         setLoading(false);
@@ -48,7 +48,7 @@ function Popularitems() {
           </div>
         ) : (
           <div className="d-flex flex-wrap justify-content-center align-items-center gap-4 mt-4">
-            {filteredData.map((e, i) => (
+            {data.map((e, i) => (
               <PopularItemsCard data={e} key={i} />
             ))}
           </div>

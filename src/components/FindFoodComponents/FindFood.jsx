@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom'
 
 function FindFood() {
 
-    let [foodData, setfoodData] = useState([])
     let [loading, setLoading] = useState(true)
     const location = useLocation();
     let receivedData = location.state?.data || null
@@ -23,19 +22,19 @@ function FindFood() {
     console.log(processString(receivedData))
 
 
-    let tiffenFilteredData = foodData.filter((e) => e.category === "Tiffen")
-    let riceFilteredData = foodData.filter((e) => e.category === "Rice")
-    let eveFilteredData = foodData.filter((e) => e.category === "Evenings Crackers")
-    let sweetFilteredData = foodData.filter((e) => e.category === "Sweet")
-    let kaaramFilteredData = foodData.filter((e) => e.category === "Kaaram")
-    let coolsFilteredData = foodData.filter((e) => e.category === "Cool Drinks")
+    let [tiffenData, setTiffenData] = useState([])
+    let [riceData, setRiceData]= useState([])
+    let [eveData, setEveData] = useState([])
+    let [sweetData, setSweetData] = useState([])
+    let [kaaramData, setKaaramData] = useState([])
+    let [coolsData, setCoolsData] = useState([])
 
-    let getFoods = async () => {
+    let getTiffen = async () => {
         try {
             setLoading(true);
-            let res = await AxiosService.get("/food/getAllFoods");
+            let res = await AxiosService.get("/food/getForTiffen");
             if (res.status === 200) {
-                setfoodData(res.data.foods);
+                setTiffenData(res.data.foods);
                 setTimeout(() => {
                     const myLink = document.getElementById(`${processString(receivedData)}`);
                     if (myLink) {
@@ -52,11 +51,123 @@ function FindFood() {
         }
     };
 
+    let getRice = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForRice");
+            if (res.status === 200) {
+                setRiceData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            console.log(error);
+            setError("Error fetching data. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    let getEveCrk = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForEveCrk");
+            if (res.status === 200) {
+                setEveData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            console.log(error);
+            setError("Error fetching data. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    let getSweet = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForSwt");
+            if (res.status === 200) {
+                setSweetData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            console.log(error);
+            setError("Error fetching data. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    let getKaaram = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForKaaram");
+            if (res.status === 200) {
+                setKaaramData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            console.log(error);
+            setError("Error fetching data. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    let getCool = async () => {
+        try {
+            setLoading(true);
+            let res = await AxiosService.get("/food/getForCools");
+            if (res.status === 200) {
+                setCoolsData(res.data.foods);
+                setTimeout(() => {
+                    const myLink = document.getElementById(`${processString(receivedData)}`);
+                    if (myLink) {
+                        console.log(myLink);
+                        myLink.click();
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            console.log(error);
+            setError("Error fetching data. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        getFoods()
-
+        getTiffen()
+        getRice()
+        getSweet()
+        getCool()
+        getKaaram()
+        getEveCrk()
     }, [])
     return <>
         <div className='container-fluid mt-5 px-5'>
@@ -96,7 +207,7 @@ function FindFood() {
                             <>
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-3' id="tiffenId">Tiffen</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
-                                {tiffenFilteredData.map((e, i) => (
+                                {tiffenData.map((e, i) => (
                                     <FindFoodsCard data={e} key={i} />
                                 ))}
 
@@ -105,7 +216,7 @@ function FindFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="riceId">Rice</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    riceFilteredData.map((e, i) => {
+                                    riceData.map((e, i) => {
                                         return <FindFoodsCard data={e} key={i} />
                                     })
                                 }
@@ -115,7 +226,7 @@ function FindFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="eveId">Evenings Crackers</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    eveFilteredData.map((e, i) => {
+                                    eveData.map((e, i) => {
                                         return <FindFoodsCard data={e} key={i} />
                                     })
                                 }
@@ -125,7 +236,7 @@ function FindFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="sweetId">Sweet</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    sweetFilteredData.map((e, i) => {
+                                    sweetData.map((e, i) => {
                                         return <FindFoodsCard data={e} key={i} />
                                     })
                                 }
@@ -135,7 +246,7 @@ function FindFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="kaaramId">Kaaram</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    kaaramFilteredData.map((e, i) => {
+                                    kaaramData.map((e, i) => {
                                         return <FindFoodsCard data={e} key={i} />
                                     })
                                 }
@@ -145,7 +256,7 @@ function FindFood() {
                                 <h4 style={{ width: "100%" }} className='pb-0 mb-0 mt-4' id="drinksId">Drinks and Cools</h4>
                                 <hr style={{ width: "100%" }} className='p-0 mt-3' />
                                 {
-                                    coolsFilteredData.map((e, i) => {
+                                    coolsData.map((e, i) => {
                                         return <FindFoodsCard data={e} key={i} />
                                     })
                                 }

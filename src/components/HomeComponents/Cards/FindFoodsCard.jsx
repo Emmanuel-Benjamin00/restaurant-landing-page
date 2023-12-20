@@ -13,6 +13,7 @@ function FindFoodsCard(props) {
     let dispatch = useDispatch()
     let token = useSelector((state) => state.token)
     const [error, setError] = useState(null);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -36,20 +37,22 @@ function FindFoodsCard(props) {
 
     let handleDelete = async (id) => {
         try {
+            setIsDeleting(true);
+            handleCloseModal(); 
             let res = await AxiosService.delete(`/food/${id}`)
             if (res.status === 202) {
                 console.log("deleted")
                 dispatch(getData())
-                handleCloseModal(); 
             }
         } catch (error) {
             console.log(error)
-            setError('Error occurred while deleting the food. Please try again.');
+            setError('Error occurred while deleting the food.');
+            setIsDeleting(false); 
         }
     }
 
-    const handleConfirmDelete = () => {
-        handleDelete(props.data._id);
+    const handleConfirmDelete = (id) => {
+        handleDelete(id);
     };
 
 
@@ -69,7 +72,7 @@ function FindFoodsCard(props) {
                     {props.editButton && (
                         <>
                             <Button className="ms-3" onClick={handleShowModal} variant="warning">
-                                Delete
+                            {isDeleting ? 'Deleting...' : 'Delete'}
                             </Button>
                             <Modal show={showDeleteModal} onHide={handleCloseModal}>
                                 <Modal.Header closeButton>
@@ -82,8 +85,8 @@ function FindFoodsCard(props) {
                                     <Button variant="secondary" onClick={handleCloseModal}>
                                         Cancel
                                     </Button>
-                                    <Button variant="danger" onClick={handleConfirmDelete}>
-                                        Delete
+                                    <Button variant="danger" onClick={()=>handleConfirmDelete(props.data._id)}>
+                                    Delete
                                     </Button>
                                 </Modal.Footer>
                             </Modal>

@@ -5,9 +5,9 @@
   }
   
   .login-section{
-    background-image: url("https://images.pexels.com/photos/545313/pexels-photo-545313.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-image: url("https://img.freepik.com/premium-photo/food-packaging-yellow-background-quarantine-food-delivery-home-flatlay-banner-with-copyspace_168091-172.jpg");
     background-size: cover;
-  
+    height: 100%;
   }
   
   .login-form{
@@ -29,5 +29,27 @@
   .pointer{
     cursor: pointer;
   }
+
+  /* Media query for screens 600 pixels and smaller */
+@media only screen and (max-width: 600px) {
+  .login-form {
+    width: 90%;
+}
+}
+
+/* Media query for screens 768 pixels and smaller */
+@media only screen and (max-width: 768px) {
+  
+}
+
+/* Media query for screens 992 pixels and smaller */
+@media only screen and (max-width: 992px) {
+ 
+}
+
+/* Media query for screens 1200 pixels and smaller */
+@media only screen and (max-width: 1200px) {
+
+}
   
   

@@ -65,7 +65,7 @@ function Signup() {
   let navigate = useNavigate()
 
   return <>
-    <div className='signup-section'>
+    <div className='signup-section py-4'>
       <Container>
         <div className='d-flex flex-column justify-content-center align-items-center '>
           <h3>SignUp</h3>

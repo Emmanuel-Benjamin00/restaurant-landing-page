@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 .env
 dummy.jsx
+dummy2.jsx
+foodsSlice.jsx

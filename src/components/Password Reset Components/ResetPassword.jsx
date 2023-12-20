@@ -87,7 +87,7 @@ function ResetPassword() {
 
   return (
     <>
-      <div className='d-flex align-items-center justify-content-center flex-column' style={{ height: '100vh' }} >
+      <div className='d-flex align-items-center justify-content-center flex-column bg-image-outpages' style={{ height: '100vh' }} >
         <h1 className='fs-2 mb-3 form-box'>Reset Password</h1>
         <form className='col-md-3 col-xxl-5 form-box'>
           <div className="mb-3" id="formBasicPassword1">

@@ -5,6 +5,10 @@ body {
   font-family: 'Source Sans 3', sans-serif !important;
 }
 
+.bg-image-outpages{
+  background-image: url("https://media.istockphoto.com/id/1301421740/vector/abstract-backdrop-yellow-background-minimal-empty-space-with-soft-light.jpg?s=612x612&w=0&k=20&c=LmAvP9miV9gxAX4eUd5HtMEhP3Sf5sN8HPz6vCoEBfQ=");
+  background-size: cover;
+}
 /* ------------------------------------------------------------------- */
 
 /* Topbar */
