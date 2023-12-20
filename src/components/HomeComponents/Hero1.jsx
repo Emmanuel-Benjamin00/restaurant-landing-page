@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import BananaLeaf from "../../assets/images/hero/banana leaf.png"
+import BananaLeaf from '../../assets/images/hero/banana leaf.png'
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import AxiosService from '../../utils/ApiService';
 import useLogout from '../../hooks/useLogout';
 import { useDispatch } from 'react-redux';
-import { toggle } from "../../redux/tokenSlice"
+import { toggle } from '../../redux/tokenSlice'
 import { useSelector } from 'react-redux'
 
 function Hero1() {
@@ -15,6 +15,7 @@ function Hero1() {
   let [delpickError, setDelpickError] = useState("")
   let [selectedAddress, setSelectedAddress] = useState([])
   let [empty, setEmpty] = useState("")
+  let [error, setError] = useState("")
   
 
   let logout = useLogout()
@@ -77,7 +78,7 @@ function Hero1() {
       }
       }
     } catch (error) {
-      
+      setError("Error Occured, Address Cannot be fetched")
     }
   }
 
@@ -112,6 +113,8 @@ function Hero1() {
                         <input type="text" value={token ? address : empty} className="form-control me-2 d-inline search-input" placeholder="Enter your Address" aria-label="Search" style={{ width: "60%" }} onChange={(e) => inputChange(e)} />
                         <button type="submit" className="btn btn-outline-warning search-button fw-bold" onClick={() => handleFindFood()}>Find Food</button>
                       </div> :
+                      {/* 
+                      Add pickup tab if time permits
                       <div className='d-flex gap-3'>
                         <Form.Select aria-label="Default select example" style={{ width: "70%" }} className='hero-select-input'>
                           <option>Select the branch to Pickup</option>
@@ -121,10 +124,10 @@ function Hero1() {
                           <option value="3">Ashok Nagar</option>
                         </Form.Select>
                         <button type="button" className="btn btn-outline-warning search-button fw-bold">Find Food</button>
-                      </div>
+                      </div> */}
                   }
                   {
-                    <p style={{ color: "red", paddingTop: "4px", fontFamily: "Times New Roman", fontSize: "14px" }}>{delpickError}</p>
+                    <p style={{ color: "red", paddingTop: "4px", fontFamily: "Times New Roman", fontSize: "14px" }}>{delpickError}{error}</p>
                   }
                 </div>
               </div>

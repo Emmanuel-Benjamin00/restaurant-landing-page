@@ -14,13 +14,18 @@ function Signup() {
   let [password, setPassword] = useState("")
   let [address, setAddress] = useState("")
   let [error, setError] = useState("")
-  // let [role, setRole] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false);
   let dispatch = useDispatch()
 
 
   let createUser = async (e) => {
     e.preventDefault()
+
+    if (!name || !mobile || !email || !password || !address) {
+      setError("Please fill in all fields");
+      return;
+    }
+    
     try {
       setIsSubmitting(true);
       let res = await AxiosService.post('/user/signup', {
@@ -45,16 +50,17 @@ function Signup() {
     }
     catch (error) {
       console.log(error.response)
-      setError("User Already Exists")
+      if (error.response && error.response.status === 400) {
+        setError("User Already Exists");
+      } else {
+        setError("An error occurred");
+      }
     }
     finally {
       setIsSubmitting(false);
     }
   }
 
-  // useEffect(()=>{
-  //   setRole('user'); 
-  // },[])
 
   let navigate = useNavigate()
 
@@ -66,27 +72,27 @@ function Signup() {
           <Form className='signup-form'>
             <FormGroup className="mb-3">
               <FormLabel>Full Name</FormLabel>
-              <FormControl type="text" id="fullName" aria-describedby="fullName" onChange={(e) => setName(e.target.value)} />
+              <FormControl type="text" id="fullName" aria-describedby="fullName" onChange={(e) => setName(e.target.value)}  required />
             </FormGroup>
 
             <FormGroup className="mb-3">
               <FormLabel>Mobile</FormLabel>
-              <FormControl type="number" id="mobile" aria-describedby="mobile" onChange={(e) => setMobile(e.target.value)} />
+              <FormControl type="number" id="mobile" aria-describedby="mobile" onChange={(e) => setMobile(e.target.value)} required  />
             </FormGroup>
 
             <FormGroup className="mb-3">
               <FormLabel>Email address</FormLabel>
-              <FormControl type="email" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
+              <FormControl type="email" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)}  required />
             </FormGroup>
 
             <FormGroup className="mb-3">
               <FormLabel>Password</FormLabel>
-              <FormControl type="password" id="exampleInputPassword1" onChange={(e) => setPassword(e.target.value)} />
+              <FormControl type="password" id="exampleInputPassword1" onChange={(e) => setPassword(e.target.value)}  required />
             </FormGroup>
 
             <FormGroup className="mb-3">
               <FormLabel>Address</FormLabel>
-              <FormControl type="text" id="Address" onChange={(e) => setAddress(e.target.value)} />
+              <FormControl type="text" id="Address" onChange={(e) => setAddress(e.target.value)}  required />
             </FormGroup>
 
             {/* <FormGroup className="mb-3">
@@ -95,11 +101,11 @@ function Signup() {
           </FormGroup> */}
 
             <div id="signup-error" className='text-danger'>{error}</div>
-            <Button variant="primary" type="submit" className='button-login' onClick={(e) => createUser(e)} disabled={isSubmitting}>
+            <Button variant="primary" type="button" className='button-login' onClick={(e) => createUser(e)} disabled={isSubmitting}>
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
           </Form>
-          {/* <div className='mt-2 text-primary fs-6 pointer' onClick={() => navigate("/")}>Back to Login Page</div> */}
+          <div className='mt-2 text-primary fs-6 pointer' onClick={() => navigate("/")}>Back to Home Page</div>
         </div>
       </Container>
     </div>

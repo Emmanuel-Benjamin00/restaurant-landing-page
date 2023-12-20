@@ -11,7 +11,7 @@ function SearchByFoodCard(props) {
     return <>
         <div className="d-flex flex-column align-items-center gap-3">
             <img src={props.data.img} className="bd-placeholder-img rounded-circle" width="140" height="140"
-                aria-label="Placeholder" role="img" alt="" onClick={()=>handleClick(props.data)}/>
+                aria-label="Placeholder" role="img" alt={props.data.food} onClick={()=>handleClick(props.data)}/>
             <h2 className="fw-normal">{props.data.food}</h2>
         </div>
     </>

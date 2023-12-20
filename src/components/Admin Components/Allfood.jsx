@@ -66,21 +66,21 @@ function AllFood() {
     }, [getData])
     return <>
         <div className='container-fluid mt-5 px-5'>
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <a class="navbar-brand fs-2" href="#">Find Foods</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-expand-lg">
+                <div className="container-fluid">
+                    <a className="navbar-brand fs-2" href="#">Find Foods</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav ms-auto">
-                            <a class="nav-link fs-5 pe-4" href="#tiffenId" id="Tiffen">Tiffen</a>
-                            <a class="nav-link fs-5 pe-4" href="#riceId" id="Rice">Rice</a>
-                            <a class="nav-link fs-5 pe-4" href="#eveId" id="Evenings-Crackers">Evenings Crackers</a>
-                            <a class="nav-link fs-5 pe-4" href="#sweetId" id="Sweet">Sweet</a>
-                            <a class="nav-link fs-5 pe-4" href="#kaaramId" id="Kaaram">Kaaram</a>
-                            <a class="nav-link fs-5 pe-4" href="#drinksId" id="Drinks-and-Cools">Drinks and Cools</a>
-                            <Button onClick={()=>navigate("/admin/createfood")}>Add Food</Button>
+                    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div className="navbar-nav ms-auto">
+                            <a className="nav-link fs-5 pe-4" href="#tiffenId" id="Tiffen">Tiffen</a>
+                            <a className="nav-link fs-5 pe-4" href="#riceId" id="Rice">Rice</a>
+                            <a className="nav-link fs-5 pe-4" href="#eveId" id="Evenings-Crackers">Evenings Crackers</a>
+                            <a className="nav-link fs-5 pe-4" href="#sweetId" id="Sweet">Sweet</a>
+                            <a className="nav-link fs-5 pe-4" href="#kaaramId" id="Kaaram">Kaaram</a>
+                            <a className="nav-link fs-5 pe-4" href="#drinksId" id="Drinks-and-Cools">Drinks and Cools</a>
+                            <Button variant="warning" onClick={()=>navigate("/admin/createfood")}>Add Food</Button>
                         </div>
                     </div>
                 </div>
@@ -91,8 +91,8 @@ function AllFood() {
                         loading ?
                             <>
                                 <div className='d-flex justify-content-center align-items-center' style={{ width: "100%" }}>
-                                    <div class="spinner-border text-warning" role="status">
-                                        <span class="visually-hidden">Loading...</span>
+                                    <div className="spinner-border text-warning" role="status">
+                                        <span className="visually-hidden">Loading...</span>
                                     </div>
                                 </div>
                             </>

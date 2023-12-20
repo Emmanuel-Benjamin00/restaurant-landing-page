@@ -56,10 +56,15 @@ function CheckoutAddressCard() {
                 setInp(false)
             }
         } catch (error) {
-            if (error.response.status === 401) {
+            if (error.response.status === 400) {
                 logout()
+                navigate("/")
                 dispatch(toggle())
                 setDelpickError("Login to get food Delivered")
+            }
+            else{
+                logout()
+                navigate("/")
             }
         }
     }

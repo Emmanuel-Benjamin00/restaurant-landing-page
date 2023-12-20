@@ -46,7 +46,17 @@ function LoginPage() {
                 }
             }
         } catch (error) {
-            setLoginError("Wrong Credentials")
+            if (error.response) {
+              if (error.response.status === 400) {
+                setLoginError("Wrong Credentials");
+              } else if (error.response.status === 500) {
+                setLoginError("Internal Server Error");
+              } else {
+                setLoginError("An error occurred");
+              }
+            } else {
+              setLoginError("Network error. Please try again.");
+            }
         }
         finally {
             setIsSubmitting(false);

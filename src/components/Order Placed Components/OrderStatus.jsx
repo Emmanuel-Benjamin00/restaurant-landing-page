@@ -15,7 +15,7 @@ function OrderStatus() {
     const [orderStatusData, setOrderDataStatus] = useState([])
     const [buttonClick, setButtonClick] = useState(false);
     const [buttonDisabledState, setButtonDisabledState] = useState({});
-    
+
 
     let OrderStatus = async () => {
         try {
@@ -28,17 +28,23 @@ function OrderStatus() {
         }
     }
 
- 
-    const handleInprocessStateUpdate = async (orderId) =>{
+    const getButtonStateFromStorage = (orderId) => {
+        const storedState = localStorage.getItem(orderId);
+        return storedState ? JSON.parse(storedState) : { inProcess: false, delivered: false };
+    };
+
+    const handleInprocessStateUpdate = async (orderId) => {
         try {
-            let res = await AxiosService.put('/order/updateOrderedFood',{
+            let res = await AxiosService.put('/order/updateOrderedFood', {
                 orderId: orderId,
-                status:"InProcess"
+                status: "InProcess"
             })
-            if(res.status===200){
+            if (res.status === 200) {
                 console.log("Inprocess")
-                setButtonClick(!buttonClick); 
+                setButtonClick(!buttonClick);
                 setButtonDisabledState(prevState => ({ ...prevState, [orderId]: { inProcess: true, delivered: false } }));
+                const updatedState = { inProcess: true, delivered: false };
+                localStorage.setItem(orderId, JSON.stringify(updatedState));
             }
         } catch (error) {
             console.log(error.response)
@@ -46,16 +52,18 @@ function OrderStatus() {
         }
     }
 
-    const handleDeliveredStateUpdate = async (orderId) =>{
+    const handleDeliveredStateUpdate = async (orderId) => {
         try {
-            let res = await AxiosService.put('/order/updateOrderedFood',{
+            let res = await AxiosService.put('/order/updateOrderedFood', {
                 orderId: orderId,
-                status:"Delivered"
+                status: "Delivered"
             })
-            if(res.status===200){
+            if (res.status === 200) {
                 console.log("Delivered")
-                setButtonClick(!buttonClick); 
+                setButtonClick(!buttonClick);
                 setButtonDisabledState(prevState => ({ ...prevState, [orderId]: { inProcess: true, delivered: true } }));
+                const updatedState = { inProcess: true, delivered: true };
+                localStorage.setItem(orderId, JSON.stringify(updatedState));
             }
         } catch (error) {
             console.log(error.response)
@@ -77,31 +85,31 @@ function OrderStatus() {
                 </tr>
             </thead>
             <tbody>
-               {
-                orderStatusData.map((eachData,i)=>{
-                    const formattedDate = new Date(eachData.createdAt).toLocaleString(); 
-                    const isDisabled = buttonDisabledState[eachData._id] || { inProcess: false, delivered: false };
-                    return <tr key={eachData._id}>
-                        <td>{i+1}</td>
-                        <td>{eachData._id}</td>
-                        <td>{eachData.foodOrdered}</td>
-                        <td>{eachData.foodId}</td>
-                        <td>{eachData.price}</td>
-                        <td>{eachData.OrderedCustomerName}</td>
-                        <td>{eachData.address}</td>
-                        <td>{eachData.status}</td>
-                        <td>{formattedDate}</td>
-                        <td>
-                        {
-                            <>
-                                <Button variant='warning' className='mb-1' onClick={()=>handleInprocessStateUpdate(eachData._id)}  disabled={isDisabled.inProcess}>Inprocess</Button>
-                                <Button variant='success'onClick={()=>handleDeliveredStateUpdate(eachData._id)}  disabled={isDisabled.delivered}>Delivered</Button>
-                            </> 
-                        }
-                        </td>
-                    </tr>
-                })
-               }
+                {
+                    orderStatusData.map((eachData, i) => {
+                        const formattedDate = new Date(eachData.createdAt).toLocaleString();
+                        const isDisabled = getButtonStateFromStorage(eachData._id);
+                        return <tr key={eachData._id}>
+                            <td>{i + 1}</td>
+                            <td>{eachData._id}</td>
+                            <td>{eachData.foodOrdered}</td>
+                            <td>{eachData.foodId}</td>
+                            <td>{eachData.price}</td>
+                            <td>{eachData.OrderedCustomerName}</td>
+                            <td>{eachData.address}</td>
+                            <td>{eachData.status}</td>
+                            <td>{formattedDate}</td>
+                            <td>
+                                {
+                                    <>
+                                        <Button variant='warning' className='mb-1' onClick={() => handleInprocessStateUpdate(eachData._id)} disabled={isDisabled.inProcess}>Inprocess</Button>
+                                        <Button variant='success' onClick={() => handleDeliveredStateUpdate(eachData._id)} disabled={isDisabled.delivered}>Delivered</Button>
+                                    </>
+                                }
+                            </td>
+                        </tr>
+                    })
+                }
             </tbody>
         </Table>
     </>

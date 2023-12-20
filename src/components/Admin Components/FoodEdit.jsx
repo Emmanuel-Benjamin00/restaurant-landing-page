@@ -106,9 +106,9 @@ function FoodEdit() {
     }
 
     return <>
-        <div class="container pt-4">
-            <div class="row">
-                <div class="col" style={{ height: "100%" }} >
+        <div className="container pt-4">
+            <div className="row">
+                <div className="col" style={{ height: "100%" }} >
                     <>
                         <h4 className='text-center'>Edit Food</h4>
                         <Form noValidate validated={validated}  >

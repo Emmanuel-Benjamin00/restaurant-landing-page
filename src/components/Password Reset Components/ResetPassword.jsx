@@ -10,6 +10,9 @@ function ResetPassword() {
   let [messageColor, setMessageColor] = useState("black")
   let [messagetext, setMessagetext] = useState("")
 
+  let [resetting, setResetting] = useState(false)
+  let [resettingWord, setResettingWord] = useState("Reset Password")
+
   const navigate = useNavigate()
 
   const location = useLocation();
@@ -23,7 +26,7 @@ function ResetPassword() {
       console.log(res)
       const reqUser = res.data.users.find(user => user.email === email)
       console.log(reqUser)
-      if (reqUser) {  
+      if (reqUser) {
         const tokenCheck = reqUser.randomString === token
         if (!tokenCheck) {
           navigate('/error')
@@ -32,6 +35,10 @@ function ResetPassword() {
     }
     catch (error) {
       console.log(error)
+      setResettingWord("Reset Password")
+    }
+    finally {
+      setResettingWord("Reset password")
     }
   }
 
@@ -44,6 +51,8 @@ function ResetPassword() {
 
     e.preventDefault()
     try {
+      setResetting(true)
+      setResettingWord("Please Wait")
       let res = await AxiosService.put('/user/resetPassword', {
         email,
         pass1,
@@ -93,8 +102,8 @@ function ResetPassword() {
 
           <small className="form-text" id="message" style={{ color: messageColor }}>{messagetext}</small>
 
-          <button className="btn btn-primary mt-2" type="submit" id="reset-button" style={{ width: '100%' }} onClick={(e) => resetSubmit(e)}>Reset Password</button>
-        </form><br/>
+          <button className="btn btn-primary mt-2" type="submit" id="reset-button" style={{ width: '100%' }} onClick={(e) => resetSubmit(e)} disabled={resetting}>{resettingWord}</button>
+        </form><br />
         {/* <p style={{ width: '30vw' }}> After clicking the Reset password button this page  takes few seconds to process. Since the backend is deployed in render platform, it takes some time. Please wait until it works.</p> */}
       </div>
     </>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import instaImg from "../../assets/images/Footer/instagram.svg"
 import fbImg from "../../assets/images/Footer/facebook.svg"
 import twitterImg from "../../assets/images/Footer/twitter.svg"
@@ -47,30 +47,18 @@ function Footer() {
 
               <ul className="list-unstyled d-flex">
                 <li className="ms-3"><a className="link-body-emphasis" href="#"><img src={instaImg}
-                  alt="" /></a></li>
+                  alt="Instagram" /></a></li>
                 <li className="ms-3"><a className="link-body-emphasis" href="#"><img src={fbImg}
-                  alt="" /></a></li>
-                <li className="ms-3"><a className="link-body-emphasis" href="#"><img src={twitterImg} alt="" /></a>
+                  alt="Facebook" /></a></li>
+                <li className="ms-3"><a className="link-body-emphasis" href="#"><img src={twitterImg} alt="Twitter" /></a>
                 </li>
               </ul>
-
-               {/* <p>Receive exclusive offers in your mailbox</p>
-             <div className="d-flex flex-column flex-sm-row w-100 gap-2">
-
-                <div className="input-container d-flex p-1 " style={{ borderRadius: "8px", backgroundColor: "#f5f5f5" }}>
-                  <img src={mailImg} alt="" />
-                  <label htmlFor="newsletter1" className="visually-hidden">Enter Your email</label>
-                  <input id="newsletter1" type="text" className="form-control border-0 footer-inp" placeholder="Enter Your email"
-                    style={{ color: "#F5F5F5" }} />
-                </div>
-                <button className="btn bg-warning sub-but-foot" type="button">Subscribe</button>
-              </div> */}
             </form>
           </div>
         </div>
         <div className="d-flex  flex-sm-row justify-content-between py-4 my-4 border-top">
           <p>All rights Reserved © </p>
-          <p><span>Made with <span> <img src={heartImg} alt="" />&nbsp;</span>
+          <p><span>Made with <span> <img src={heartImg} alt="Heart" />&nbsp;</span>
             by </span><span>Emmanuel</span></p>
         </div>
       </footer>

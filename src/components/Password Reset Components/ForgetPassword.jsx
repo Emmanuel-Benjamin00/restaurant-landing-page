@@ -39,7 +39,7 @@ function ForgetPassword() {
             form.style.pointerEvents = 'auto';
             button.disabled = false;
             setMessageColor("red")
-            setMessagetext("User Does not exist or the input field is empty")
+            setMessagetext("User Does not exist")
             console.log(error.response)
             setResettingWord("Forgot Password")
         }

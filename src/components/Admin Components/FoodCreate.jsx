@@ -20,7 +20,6 @@ function FoodCreate() {
 
 
   const handleFileChange = (event) => {
-      console.log(event)
       const file = event.target.files[0];
       console.log(file)
       setSelectedFile(file);
@@ -82,34 +81,34 @@ function FoodCreate() {
   }
 
   return <>
-    <div class="container pt-4">
-      <div class="row">
-        <div class="col" style={{ height: "100%" }} >
+    <div className="container pt-4">
+      <div className="row">
+        <div className="col" style={{ height: "100%" }} >
           <>
         <h4 className='text-center'>Create Food</h4>
         <Form noValidate validated={validated}  >
             <Form.Group controlId="img" className="mb-1">
                 <Form.Label>Upload Img of the dish</Form.Label>
                 <Form.Control ref={fileInputRef} required type="file" onChange={handleFileChange} />
-                <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please add a image</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="dish" className="mb-1">
                 <Form.Label>Dish/Food</Form.Label>
                 <Form.Control required type="text" onChange={(e) => setDish(e.target.value)} value={dish} />
-                <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please choose Food Name</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="des" className="mb-1">
                 <Form.Label>Description</Form.Label>
                 <Form.Control required type="text" onChange={(e) => setDes(e.target.value)} value={des} />
-                <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please choose a Description</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="price" className="mb-1">
                 <Form.Label>Price</Form.Label>
                 <Form.Control required type="number" onChange={(e) => setPrice(e.target.value)} value={price} />
-                <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please choose a Price</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="category" className="mb-1">
@@ -123,7 +122,7 @@ function FoodCreate() {
                     <option value="Cool Drinks">Cool Drinks</option>
                     <option value="Kaaram">Kaaram</option>
                 </Form.Select>
-                <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please choose a category</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="showInPage" className="mb-1">
