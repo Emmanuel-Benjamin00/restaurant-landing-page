@@ -36,8 +36,8 @@ function payment() {
                     setTimeout(() => {
                         window.location.replace("/");
                         window.history.go(-(window.history.length - 2));
-                        // navigate("/")
-                    }, 3500)
+                        navigate("/")
+                    }, 6500)
                 }
             }
         } catch (error) {
@@ -45,7 +45,7 @@ function payment() {
                 logout()
                 navigate("/")
             }
-           
+
             console.log(error.response)
         }
     }
@@ -241,7 +241,9 @@ function payment() {
                         <Card style={{ width: '100%' }} className='mb-3'>
                             <Card.Body>
                                 <Card.Text>
-                                    Payment Gateway page is in process of development. Click "Place Order", to place your order without payment.
+                                    Payment Mode :<br />
+                                    <input type="radio" id="cashOnDelivery" name="paymentMode" value="cashOnDelivery" checked/> &nbsp;
+                                    <label for="cashOnDelivery">Cash on Delivery</label>
                                 </Card.Text>
                             </Card.Body>
                         </Card>
