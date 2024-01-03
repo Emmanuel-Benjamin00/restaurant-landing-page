@@ -76,4 +76,4 @@ Welcome to our delicious world! This GitHub repository houses the codebase for o
 
 1. To get started with the Restaurant Website:
    ```bash
-   git clone https://github.com/your-username/restaurant-website.git
+   git clone https://github.com/Emmanuel-Benjamin00/restaurant-landing-page
