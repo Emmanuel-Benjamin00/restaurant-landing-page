@@ -21,7 +21,7 @@ Welcome to our delicious world! This GitHub repository houses the codebase for o
 
 #### 4. Food Categories:
 
-- Easily find your favorite dishes by browsing categories such as Tiffen, Rice, Evening Crackers, Sweets, Kaaram, Drinks, and Cools.
+- Easily find your favorite dishes by browsing categories such as Tiffen, Rice, Evening Crackers, Sweets, Kaaram, Drinks and Cools.
 
 #### 5. Live Tracking:
 
