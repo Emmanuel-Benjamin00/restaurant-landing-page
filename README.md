@@ -59,12 +59,13 @@ Welcome to our delicious world! This GitHub repository houses the codebase for o
 - Admins can view a comprehensive list of all orders along with their respective statuses.
 
 
-## Admin Credentials:
+## User and Admin Credentials:
 
+- **Admin Credentials:**
   - **Email:** admin@gmail.com
   - **Password:** 123
 
-## Default User Credentials:
+- **Default User Credentials:**
   - **Email:** user@gmail.com
   - **Password:** 123
 
