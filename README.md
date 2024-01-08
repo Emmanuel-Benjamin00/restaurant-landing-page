@@ -64,7 +64,7 @@ Welcome to our delicious world! This GitHub repository houses the codebase for o
   - **Email:** admin@gmail.com
   - **Password:** 123
 
-- **Default User Credentials:**
+## Default User Credentials:
   - **Email:** user@gmail.com
   - **Password:** 123
 
