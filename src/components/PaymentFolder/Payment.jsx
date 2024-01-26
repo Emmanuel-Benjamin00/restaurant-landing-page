@@ -63,7 +63,6 @@ function payment() {
                     <div className=" order-md-last">
                         <h4 className="d-flex justify-content-between align-items-center mb-3">
                             <span className="text-primary">Your Order Details</span>
-                            <span className="badge bg-primary rounded-pill">3</span>
                         </h4>
                         <ul className="list-group mb-3">
                             {orderData && orderData[0] && (
