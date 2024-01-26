@@ -248,7 +248,7 @@ function payment() {
                             </Card.Body>
                         </Card>
 
-                        <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => handlePlaceOrder()}>Place Order</button>
+                        <button className="w-100 btn btn-primary btn-lg" type="button" onClick={()=> handlePlaceOrder()}>Place Order</button>
                     </form>
                 </div>
             </div>
