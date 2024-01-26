@@ -33,11 +33,11 @@ function payment() {
                 })
                 if (res.status === 201) {
                     console.log("Order placed successfully")
-                    setTimeout(() => {
-                        window.location.replace("/");
-                        window.history.go(-(window.history.length - 2));
-                        navigate("/")
-                    }, 6500)
+                    // setTimeout(() => {
+                    //     window.location.replace("/");
+                    //     window.history.go(-(window.history.length - 2));
+                    //     navigate("/")
+                    // }, 6500)
                 }
             }
         } catch (error) {

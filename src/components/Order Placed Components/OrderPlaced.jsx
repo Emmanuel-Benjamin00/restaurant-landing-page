@@ -1,14 +1,15 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+useNavigate
 
 function OrderPlaced() {
   const location = useLocation();
   const receivedData = location.state?.data || 'Default Data';
   let orderData = useSelector((state) => state.orderData)
-
+  let navigate = useNavigate()
 
   return <>
     <div className='d-flex justify-content-center align-items-center flex-column' style={{ height: "80vh" }}>
@@ -23,6 +24,7 @@ function OrderPlaced() {
           </Card.Body>
         </Card>
       )}
+      <Button className='btn-warning mt-5' onClick={()=>navigate("/")}>Go to Home</Button>
     </div>
   </>
 }
